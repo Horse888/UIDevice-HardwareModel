@@ -54,6 +54,12 @@
 		case UIHardwareModeliPadMiniWifi:
 			name = @"iPad mini Wifi";
 			break;
+		case UIHardwareModeliPadMiniRetinaWifi:
+			name = @"iPad mini retina Wifi";
+			break;
+        case UIHardwareModeliPadMiniRetinaGlobal:
+			name = @"iPad mini retina Global";
+			break;
 		case UIHardwareModeliPhone1G:
 			name = @"iPhone 1G";
 			break;
@@ -227,6 +233,12 @@
 			
 		if([hwString isEqualToString: @"iPad3,6"])
 			_hardwareModel = UIHardwareModeliPad4CDMA;
+        
+        if([hwString isEqualToString: @"iPad4,4"])
+			_hardwareModel = UIHardwareModeliPadMiniRetinaWifi;
+        
+        if([hwString isEqualToString: @"iPad4,5"])
+			_hardwareModel = UIHardwareModeliPadMiniRetinaGlobal;
 	}
 	
 	return _hardwareModel;

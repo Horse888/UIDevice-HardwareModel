@@ -49,7 +49,10 @@ typedef enum __UIHardwareModel
     UIHardwareModeliPhone5cGlobal = 29,
     
 	UIHardwareModeliPhone5s = 30,
-    UIHardwareModeliPhone5sGlobal = 31
+    UIHardwareModeliPhone5sGlobal = 31,
+    
+    UIHardwareModeliPadMiniRetinaWifi = 32,
+    UIHardwareModeliPadMiniRetinaGlobal = 33
     
 } UIHardwareModel;
 
