@@ -49,8 +49,13 @@ typedef enum __UIHardwareModel
     UIHardwareModeliPhone5cGlobal = 29,
     
 	UIHardwareModeliPhone5s = 30,
-    UIHardwareModeliPhone5sGlobal = 31
-    
+    UIHardwareModeliPhone5sGlobal = 31,
+
+	UIHardwareModeliPadAirWiFi = 32,
+	UIHardwareModeliPadAirCellular = 33,
+
+	UIHardwareModeliPadMini2GWifi = 34,
+	UIHardwareModeliPadMini2GCelluar = 35,
 } UIHardwareModel;
 
 @interface UIDevice (HardwareModel) 
@@ -59,6 +64,11 @@ typedef enum __UIHardwareModel
  *	Returns hardware name of device instance
  */
 - (NSString *)hardwareName;
+
+/**
+ *	Returns hardware label of device instance
+ */
+- (NSString *)hardwareLabel;
 
 /**
  *	Returns hardware id of device instance

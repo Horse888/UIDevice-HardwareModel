@@ -105,6 +105,18 @@
 		case UIHardwareModeliPodTouch5G:
 			name = @"iPod 5G";
 			break;
+		case UIHardwareModeliPadAirWiFi:
+			name = @"iPad Air Wifi";
+			break;
+		case UIHardwareModeliPadAirCellular:
+			name = @"iPad Air Cellular";
+			break;
+		case UIHardwareModeliPadMini2GWifi:
+			name = @"iPad mini 2G Wifi";
+			break;
+		case UIHardwareModeliPadMini2GCelluar:
+			name = @"iPad mini 2G Celluar";
+			break;
 		case UIHardwareModelSimulator:
 			name = @"Simulator";
 			break;
@@ -116,22 +128,33 @@
 	return name;
 }
 
+- (NSString *)hardwareLabel
+{
+	static NSString *_label;
+
+	if (!_label) {
+		size_t size;
+		char *model;
+
+		sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+		model = malloc(size);
+		sysctlbyname("hw.machine", model, &size, NULL, 0);
+
+		_label = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
+		free(model);
+	}
+
+	return _label;
+}
+
 -(UIHardwareModel)hardwareModel
 {
 	static UIHardwareModel _hardwareModel;
 	
 	if(!_hardwareModel)
 	{
-		size_t size;
-		char *model;
-		
-		sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-		model = malloc(size);
-		sysctlbyname("hw.machine", model, &size, NULL, 0);
-		
-		NSString *hwString = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
-		free(model);
-		
+		NSString *hwString = [self hardwareLabel];
+
 		if([hwString isEqualToString: @"i386"] || [hwString isEqualToString:@"x86_64"])   
 			_hardwareModel = UIHardwareModelSimulator;
 		
@@ -227,8 +250,20 @@
 			
 		if([hwString isEqualToString: @"iPad3,6"])
 			_hardwareModel = UIHardwareModeliPad4CDMA;
+
+		if([hwString isEqualToString: @"iPad4,1"])
+			_hardwareModel = UIHardwareModeliPadAirWiFi;
+
+		if([hwString isEqualToString: @"iPad4,2"])
+			_hardwareModel = UIHardwareModeliPadAirCellular;
+
+		if([hwString isEqualToString: @"iPad4,4"])
+			_hardwareModel = UIHardwareModeliPadMini2GWifi;
+
+		if([hwString isEqualToString: @"iPad4,5"])
+			_hardwareModel = UIHardwareModeliPadMini2GCelluar;
 	}
-	
+
 	return _hardwareModel;
 }
 
