@@ -130,7 +130,7 @@
 
 - (NSString *)hardwareLabel
 {
-	static NSString _label;
+	static NSString *_label;
 
 	if (!_label) {
 		size_t size;
@@ -153,16 +153,8 @@
 	
 	if(!_hardwareModel)
 	{
-		size_t size;
-		char *model;
-		
-		sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-		model = malloc(size);
-		sysctlbyname("hw.machine", model, &size, NULL, 0);
-		
-		NSString *hwString = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
-		free(model);
-		
+		NSString *hwString = [self hardwareLabel];
+
 		if([hwString isEqualToString: @"i386"] || [hwString isEqualToString:@"x86_64"])   
 			_hardwareModel = UIHardwareModelSimulator;
 		
