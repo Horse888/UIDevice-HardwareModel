@@ -128,6 +128,25 @@
 	return name;
 }
 
+- (NSString *)hardwareLabel
+{
+	static NSString _label;
+
+	if (!_label) {
+		size_t size;
+		char *model;
+
+		sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+		model = malloc(size);
+		sysctlbyname("hw.machine", model, &size, NULL, 0);
+
+		_label = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
+		free(model);
+	}
+
+	return _label;
+}
+
 -(UIHardwareModel)hardwareModel
 {
 	static UIHardwareModel _hardwareModel;
