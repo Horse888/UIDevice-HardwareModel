@@ -10,9 +10,24 @@
 
 @implementation UIDevice (HardwareModel)
 
+- (NSString *)rawHardwareName
+{
+    size_t size;
+    char *model;
+    
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    model = malloc(size * sizeof(char));
+    sysctlbyname("hw.machine", model, &size, NULL, 0);
+    
+    NSString *hwString = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
+    free(model);
+
+    return hwString;
+}
+
 - (NSString *)hardwareName
 {
-	NSString *name = @"Unknown";
+    NSString *name = nil;
 	
 	switch ([self hardwareModel]) {
 		case UIHardwareModeliPad:
@@ -109,30 +124,21 @@
 			name = @"Simulator";
 			break;
 		default:
-			name = @"Unknown";
+            // Append the raw device name to the response to differentiate new devices
+            name = [NSString stringWithFormat:@"Unknown - %@", [self rawHardwareName]];
 			break;
 	}
 	
 	return name;
 }
 
--(UIHardwareModel)hardwareModel
+- (UIHardwareModel)hardwareModel
 {
-	static UIHardwareModel _hardwareModel;
+    static UIHardwareModel _hardwareModel = UIHardwareModelUnknown;
 	
-	if(!_hardwareModel)
+	if (_hardwareModel == UIHardwareModelUnknown)
 	{
-		size_t size;
-		char *model;
-		
-		sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-		model = malloc(size);
-		sysctlbyname("hw.machine", model, &size, NULL, 0);
-		
-		NSString *hwString = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
-		free(model);
-        
-        _hardwareModel = UIHardwareModelUnknown; // Unknown by default
+        NSString *hwString = [self rawHardwareName];
 		
 		if([hwString isEqualToString: @"i386"] || [hwString isEqualToString:@"x86_64"])   
 			_hardwareModel = UIHardwareModelSimulator;

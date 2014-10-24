@@ -7,9 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum __UIHardwareModel
+typedef NS_ENUM(NSInteger, UIHardwareModel)
 {
     UIHardwareModelUnknown = 0,
+    
 	UIHardwareModelSimulator = 1,
     
 	UIHardwareModeliPhone1G = 2,
@@ -55,7 +56,7 @@ typedef enum __UIHardwareModel
     UIHardwareModeliPhone6 = 32,
     UIHardwareModeliPhone6Plus = 33
     
-} UIHardwareModel;
+};
 
 @interface UIDevice (HardwareModel) 
 
