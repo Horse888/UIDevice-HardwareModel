@@ -60,6 +60,34 @@
         case UIHardwareModeliPadMiniRetinaGlobal:
 			name = @"iPad mini retina Global";
 			break;
+        case UIHardwareModeliPadMiniRetinaRev:
+            name = @"iPad mini retina";
+            break;
+        case UIHardwareModeliPadMini3Wifi:
+            name = @"iPad mini 3 Wifi";
+            break;
+        case UIHardwareModeliPadMini3A1600:
+            name = @"iPad mini 3 A1600";
+            break;
+        case UIHardwareModeliPadMini3A1601:
+            name = @"iPad mini 3 A1601";
+            break;
+        case UIHardwareModeliPadAirWifi:
+            name = @"iPad Air Wifi";
+            break;
+        case UIHardwareModeliPadAirGlobal:
+            name = @"iPad Air Global";
+            break;
+        case UIHardwareModeliPadAirGlobal:
+            name = @"iPad Air";
+            break;
+        case UIHardwareModeliPadAir2Wifi:
+            name = @"iPad Air 2 Wifi";
+            break;
+        case UIHardwareModeliPadAir2Global:
+            name = @"iPad Air 2 Global";
+            break;
+            
 		case UIHardwareModeliPhone1G:
 			name = @"iPhone 1G";
 			break;
@@ -96,6 +124,13 @@
 		case UIHardwareModeliPhone5sGlobal:
 			name = @"iPhone 5s Global";
 			break;
+        case UIHardwareModeliPhone6:
+            name = @"iPhone 6";
+            break;
+        case UIHardwareModeliPhone6Plus:
+            name = @"iPhone 6 Plus";
+            break;
+            
 		case UIHardwareModeliPodTouch1G:
 			name = @"iPod 1G";
 			break;
@@ -111,9 +146,10 @@
 		case UIHardwareModeliPodTouch5G:
 			name = @"iPod 5G";
 			break;
-		case UIHardwareModelSimulator:
-			name = @"Simulator";
-			break;
+            
+        case UIHardwareModelSimulator:
+            name = @"Simulator";
+            break;
 		default:
 			name = @"Unknown";
 			break;
@@ -122,7 +158,7 @@
 	return name;
 }
 
--(UIHardwareModel)hardwareModel
+- (UIHardwareModel)hardwareModel
 {
 	static UIHardwareModel _hardwareModel;
 	
@@ -138,6 +174,8 @@
 		NSString *hwString = [NSString stringWithCString: model encoding: NSUTF8StringEncoding];
 		free(model);
 		
+        // iPhones
+        
 		if([hwString isEqualToString: @"i386"] || [hwString isEqualToString:@"x86_64"])   
 			_hardwareModel = UIHardwareModelSimulator;
 		
@@ -158,6 +196,33 @@
         
 		if([hwString isEqualToString: @"iPhone4,1"]) 
 			_hardwareModel = UIHardwareModeliPhone4S;
+        
+        if([hwString isEqualToString: @"iPhone5,1"])
+            _hardwareModel = UIHardwareModeliPhone5;
+        
+        if([hwString isEqualToString: @"iPhone5,2"])
+            _hardwareModel = UIHardwareModeliPhone5Global;
+        
+        if([hwString isEqualToString: @"iPhone5,3"])
+            _hardwareModel = UIHardwareModeliPhone5c;
+        
+        if([hwString isEqualToString: @"iPhone5,4"])
+            _hardwareModel = UIHardwareModeliPhone5cGlobal;
+        
+        if([hwString isEqualToString: @"iPhone6,1"])
+            _hardwareModel = UIHardwareModeliPhone5s;
+        
+        if([hwString isEqualToString: @"iPhone6,2"])
+            _hardwareModel = UIHardwareModeliPhone5sGlobal;
+        
+        if([hwString isEqualToString: @"iPhone7,1"])
+            _hardwareModel = UIHardwareModeliPhone6Plus;
+        
+        if([hwString isEqualToString: @"iPhone7,2"])
+            _hardwareModel = UIHardwareModeliPhone6;
+        
+        
+        // iPods
 		
 		if([hwString isEqualToString: @"iPod1,1"])  
 			_hardwareModel = UIHardwareModeliPodTouch1G;
@@ -170,6 +235,12 @@
 		
 		if([hwString isEqualToString: @"iPod4,1"]) 
 			_hardwareModel = UIHardwareModeliPodTouch4G;
+        
+        if([hwString isEqualToString: @"iPod5,1"])
+            _hardwareModel = UIHardwareModeliPodTouch5G;
+        
+        
+        // iPads
 		
 		if([hwString isEqualToString: @"iPad1,1"]) 
 			_hardwareModel = UIHardwareModeliPad;
@@ -186,6 +257,15 @@
 		if([hwString isEqualToString: @"iPad2,4"])      
 			_hardwareModel = UIHardwareModeliPad2Wifi;
         
+        if([hwString isEqualToString: @"iPad2,5"])
+            _hardwareModel = UIHardwareModeliPadMiniWifi;
+        
+        if([hwString isEqualToString: @"iPad2,6"])
+            _hardwareModel = UIHardwareModeliPadMiniGSM;
+        
+        if([hwString isEqualToString: @"iPad2,7"])
+            _hardwareModel = UIHardwareModeliPadMiniCDMA;
+        
 		if([hwString isEqualToString: @"iPad3,1"])     
 			_hardwareModel = UIHardwareModeliPad3Wifi;
         
@@ -194,37 +274,7 @@
         
 		if([hwString isEqualToString: @"iPad3,3"])     
 			_hardwareModel = UIHardwareModeliPad3CDMA;
-        
-		if([hwString isEqualToString: @"iPhone5,1"])
-			_hardwareModel = UIHardwareModeliPhone5;
-        
-		if([hwString isEqualToString: @"iPhone5,2"])
-			_hardwareModel = UIHardwareModeliPhone5Global;
-        
-		if([hwString isEqualToString: @"iPhone5,3"])
-			_hardwareModel = UIHardwareModeliPhone5c;
-        
-		if([hwString isEqualToString: @"iPhone5,4"])
-			_hardwareModel = UIHardwareModeliPhone5cGlobal;
-        
-		if([hwString isEqualToString: @"iPhone6,1"])
-			_hardwareModel = UIHardwareModeliPhone5s;
-        
-		if([hwString isEqualToString: @"iPhone6,2"])
-			_hardwareModel = UIHardwareModeliPhone5sGlobal;
-        
-		if([hwString isEqualToString: @"iPod5,1"])
-			_hardwareModel = UIHardwareModeliPodTouch5G;
-        
-		if([hwString isEqualToString: @"iPad2,5"])
-			_hardwareModel = UIHardwareModeliPadMiniWifi;
-        
-		if([hwString isEqualToString: @"iPad2,6"])
-			_hardwareModel = UIHardwareModeliPadMiniGSM;
-			
-		if([hwString isEqualToString: @"iPad2,7"])
-			_hardwareModel = UIHardwareModeliPadMiniCDMA;
-        
+
 		if([hwString isEqualToString: @"iPad3,4"])
 			_hardwareModel = UIHardwareModeliPad4Wifi;
         
@@ -234,11 +284,38 @@
 		if([hwString isEqualToString: @"iPad3,6"])
 			_hardwareModel = UIHardwareModeliPad4CDMA;
         
+        if([hwString isEqualToString: @"iPad4,1"])
+            _hardwareModel = UIHardwareModeliPadAirWifi;
+        
+        if([hwString isEqualToString: @"iPad4,2"])
+            _hardwareModel = UIHardwareModeliPadAirGlobal;
+        
+        if([hwString isEqualToString: @"iPad4,3"])
+            _hardwareModel = UIHardwareModeliPadAirRev;
+        
         if([hwString isEqualToString: @"iPad4,4"])
 			_hardwareModel = UIHardwareModeliPadMiniRetinaWifi;
         
         if([hwString isEqualToString: @"iPad4,5"])
 			_hardwareModel = UIHardwareModeliPadMiniRetinaGlobal;
+        
+        if([hwString isEqualToString: @"iPad4,6"])
+            _hardwareModel = UIHardwareModeliPadMiniRetinaRev;
+        
+        if([hwString isEqualToString: @"iPad4,7"])
+            _hardwareModel = UIHardwareModeliPadMini3Wifi;
+        
+        if([hwString isEqualToString: @"iPad4,8"])
+            _hardwareModel = UIHardwareModeliPadMini3A1600;
+        
+        if([hwString isEqualToString: @"iPad4,9"])
+            _hardwareModel = UIHardwareModeliPadMini3A1601;
+        
+        if([hwString isEqualToString: @"iPad5,3"])
+            _hardwareModel = UIHardwareModeliPadAir2Wifi;
+        
+        if([hwString isEqualToString: @"iPad5,4"])
+            _hardwareModel = UIHardwareModeliPadAir2Global;
 	}
 	
 	return _hardwareModel;

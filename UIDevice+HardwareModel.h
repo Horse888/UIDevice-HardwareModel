@@ -52,7 +52,22 @@ typedef enum __UIHardwareModel
     UIHardwareModeliPhone5sGlobal = 31,
     
     UIHardwareModeliPadMiniRetinaWifi = 32,
-    UIHardwareModeliPadMiniRetinaGlobal = 33
+    UIHardwareModeliPadMiniRetinaGlobal = 33,
+    UIHardwareModeliPadMiniRetinaRev = 34,
+    
+    UIHardwareModeliPhone6 = 35,
+    UIHardwareModeliPhone6Plus = 36,
+    
+    UIHardwareModeliPadMini3Wifi = 37,
+    UIHardwareModeliPadMini3A1600 = 38,
+    UIHardwareModeliPadMini3A1601 = 39,
+    
+    UIHardwareModeliPadAirWifi = 40,
+    UIHardwareModeliPadAirGlobal = 41,
+    UIHardwareModeliPadAirRev 42,
+    
+    UIHardwareModeliPadAir2Wifi = 43,
+    UIHardwareModeliPadAir2Global = 44
     
 } UIHardwareModel;
 
