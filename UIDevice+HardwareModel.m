@@ -78,7 +78,7 @@
         case UIHardwareModeliPadAirGlobal:
             name = @"iPad Air Global";
             break;
-        case UIHardwareModeliPadAirGlobal:
+        case UIHardwareModeliPadAirRev:
             name = @"iPad Air";
             break;
         case UIHardwareModeliPadAir2Wifi:

@@ -64,7 +64,7 @@ typedef enum __UIHardwareModel
     
     UIHardwareModeliPadAirWifi = 40,
     UIHardwareModeliPadAirGlobal = 41,
-    UIHardwareModeliPadAirRev 42,
+    UIHardwareModeliPadAirRev = 42,
     
     UIHardwareModeliPadAir2Wifi = 43,
     UIHardwareModeliPadAir2Global = 44
